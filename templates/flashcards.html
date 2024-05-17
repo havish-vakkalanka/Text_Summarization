@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .card:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <script>
+        function revealTerm(element) {
+            var termElement = element.querySelector('.term');
+            if (termElement.style.display === 'none') {
+                termElement.style.display = 'block';
+            } else {
+                termElement.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Flashcards</h1>
+        <div class="flashcards">
+            {% for term, definition in flashcards %}
+            <div class="card" onclick="revealTerm(this)">
+                <div style="display: none;" class="term"><strong>Term:</strong> {{ term }}</div>
+                <p><strong>Context:</strong> {{ definition }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html>
+

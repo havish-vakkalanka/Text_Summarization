@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character set for the HTML document, ensuring international characters are encoded correctly -->
+    <meta charset="UTF-8">
+    <!-- Viewport settings ensure the page scales correctly on different devices, particularly mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage, displayed in the browser's title bar or tab -->
+    <title>Quiz Score</title>
+    <!-- Link to external CSS file for styling. This helps maintain visual consistency and separation of content and design -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Container div for styling and alignment of content in a centralized manner -->
+    <div class="container">
+        <!-- Main heading indicating the quiz completion status -->
+        <h1>Quiz Completed!</h1>
+        <!-- Div that displays the user's score, styled distinctly for emphasis -->
+        <div class="result">
+            <!-- Sub-heading displaying the score dynamically fetched from the server variables -->
+            <h2>Your Score: {{ score }}/{{ total_questions }}</h2>
+        </div>
+        <!-- Button to allow the user to retake the quiz, with an onclick event that redirects to the quiz route -->
+        <button onclick="window.location.href='/quiz'">Retake Quiz</button>
+        <!-- Button to navigate back to the home page of the application -->
+        <button onclick="window.location.href='/'">Back to Home</button>
+        <!-- Button to navigate to a page where the user can generate flashcards from the quiz content -->
+        <button onclick="window.location.href='/flashcards'">Generate Flashcards</button>
+    </div>
+</body>
+</html>

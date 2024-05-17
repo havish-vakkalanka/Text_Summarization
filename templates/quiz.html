@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata for character set and responsive viewport settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title that appears in the browser tab -->
+    <title>Quiz</title>
+    <!-- Linking an external CSS file for styling the page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Main container for aligning and styling content -->
+    <div class="container">
+        <h1>Question {{ question_number }}</h1> <!-- Displays the question number dynamically -->
+        <!-- Form for submitting the selected quiz answer -->
+        <form action="/submit_answer" method="post">
+            <p>{{ question }}</p> <!-- Displays the question text -->
+            <!-- Loop through each option and create a radio button for each one -->
+            {% for option in choices %}
+                <div>
+                    <!-- Radio button for selecting an answer -->
+                    <input type="radio" id="{{ option }}" name="option" value="{{ option }}" required>
+                    <!-- Label corresponding to the radio button -->
+                    <label for="{{ option }}">{{ option }}</label>
+                </div>
+            {% endfor %}
+            <!-- Submit button for the form -->
+            <button type="submit">Submit Answer</button>
+        </form>
+        <!-- Button to go back to the home page -->
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html>

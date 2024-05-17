@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive behavior -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the web page -->
+    <title>Summarization Tool</title>
+    <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Main container for content with a class for styling -->
+    <div class="container">
+        <h1>PDF Summarization Tool</h1>
+        <!-- Form for file upload and model selection -->
+        <form action="/summarize" method="post" enctype="multipart/form-data">
+            <!-- Label and input for file upload -->
+            <label for="file">Upload a PDF file:</label>
+            <input type="file" id="file" name="file" required>
+            <!-- Dropdown for choosing a summarization model -->
+            <label for="model">Choose a summarization model:</label>
+            <select id="model" name="model">
+                <option value="text_rank">TextRank</option>
+                <option value="lex_rank">LexRank</option>
+                <option value="luhn">Luhn</option>
+                <option value="lsa">LSA</option>
+                <option value="t5">T5</option>
+                <option value="bart">BART</option>
+            </select>
+            <!-- Submission button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <!-- Script for handling file selection and displaying file name -->
+    <script>
+        document.getElementById('file').addEventListener('change', function() {
+            // Check if a file is selected
+            if (this.files.length > 0) {
+                // Extract file name from the uploaded file
+                var fileName = this.files[0].name;
+                // Attempt to display the file name next to the input
+                var fileNameDisplay = document.getElementById('file-name-display');
+                if (fileNameDisplay) {
+                    // Update the text if the display element already exists
+                    fileNameDisplay.textContent = fileName;
+                } else {
+                    // Create a new span element for the file name if it does not exist
+                    var newElement = document.createElement('span');
+                    newElement.id = 'file-name-display';
+                    newElement.style.paddingLeft = '10px'; // Adding some style for spacing
+                    newElement.textContent = fileName; // Set the text to the file name
+                    this.parentNode.insertBefore(newElement, this.nextSibling); // Insert the new element in the DOM
+                }
+            }
+        });
+    </script>
+</body>
+</html>

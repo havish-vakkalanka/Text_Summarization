@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata for setting the character encoding and ensuring the page is responsive -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title of the page, visible in the browser tab -->
+    <title>Summarization Results</title>
+    <!-- Link to an external CSS file for page styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Main container for centering and styling content on the page -->
+    <div class="container">
+        <h1>Summarization Results</h1> <!-- Heading displaying the purpose of the page -->
+        <!-- Container for the summary result with its own styling -->
+        <div class="result">
+            <p>{{ summary|safe }}</p> <!-- Display the summary content, using the 'safe' filter to render HTML if present -->
+        </div>
+        <!-- Button to navigate to the quiz page, enabled after viewing the summary -->
+        <button onclick="window.location.href='/quiz'">Take Quiz</button>
+        <!-- Button to navigate back to the home page -->
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html>
